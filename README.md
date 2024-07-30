@@ -23,3 +23,7 @@
 --Navbar search feature to search for friend's username. if that user exists in the database redirect to that users public profile.<br/>
 --No changes can be made to another users public profile and no access to another users credentials.<br/>
 --Logout will clear the cookies.<br/>
+
+<strong>Starting:</strong><br/>
+--In backend npm start server.js<br/>
+--In frontend npm run dev<br/>
