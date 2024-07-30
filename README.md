@@ -1,5 +1,14 @@
-React/Express social-media
+<strong>React/Express social-media</strong>
 ![reactinsta](https://github.com/user-attachments/assets/c0586e87-f1eb-430d-96d3-3c3178c593eb)
+
+<strong>Update profile:</strong>
+![updateprofile](https://github.com/user-attachments/assets/ea253faf-bb1f-49eb-8b6e-b0149d7100ad)
+
+<strong>Update credentials:</strong>
+![updatecredentials](https://github.com/user-attachments/assets/acd3003a-b95f-4835-a14f-13485beb83df)
+
+
+
 
 --Frontend created with React.<br/>
 --Backend engineered with Express.<br/>
