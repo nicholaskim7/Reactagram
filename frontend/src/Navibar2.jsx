@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import axios from 'axios';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -14,6 +15,7 @@ function Bar2() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
+  const [error, setError] = useState('');
 
   const loggedInUserId = localStorage.getItem('loggedInUserId');
 
@@ -23,13 +25,25 @@ function Bar2() {
     setUsername(e.target.value);
   };
 
-  const handleSearchSubmit = (e) => {
+  const handleSearchSubmit = async (e) => {
     e.preventDefault();
     if (username.trim() === '') {
       console.log("Username is empty");
       return;
     }
-    navigate(`/publicprofile/${username}`, { state: { loggedInUserId } });
+
+    try {
+      const response = await axios.get(`http://localhost:8081/check-username/${username}`);
+      if (response.data.userExists) {
+        setError('');
+        navigate(`/publicprofile/${username}`, { state: { loggedInUserId } });
+      }
+      else{
+        setError('Username does not exist');
+      }
+    } catch (error) {
+      setError('Error checking username');
+    }
   };
 
   return (
@@ -47,9 +61,7 @@ function Bar2() {
         </InputGroup>
         <Button type="submit" className="ms-2">Search</Button>
       </Form>
-      {/* <Nav className="ms-auto me-2">
-        <Nav.Link as={Link} to="/login">Login</Nav.Link>
-      </Nav> */}
+      {error && <div className="text-danger ms-3">{error}</div>}
     </Navbar>
   );
 }

@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
 const multer = require('multer');
 const path = require("path");
 const cookieParser = require("cookie-parser");
@@ -22,7 +22,7 @@ const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "mydatabase" //name is just crud. running Apache and mysql
+    database: "mydatabase"
 });
 
 db.connect((err) => {
@@ -180,6 +180,18 @@ app.get('/user/:id', verifyUser, (req, res) => {
     });
 });
 
+
+app.get('/check-username/:username', (req,res) => {
+    const { username } = req.params;
+    const sql = "SELECT COUNT(*) AS count FROM userprofile WHERE username = ?";
+    db.query(sql, [username], (err, result) => {
+        if (err) return res.status(500).json({message: "Error checking username"});
+        const userExists = result[0].count > 0;
+        return res.json({ userExists })
+    });
+});
+
+
 //for public profile
 app.get('/public/:username', (req, res) => {
     const { username } = req.params;
@@ -205,6 +217,7 @@ app.get('/public/:username', (req, res) => {
         });
     });
 });
+
 
 
 //logic to update user profile info includes profile pic stuff
@@ -315,6 +328,7 @@ app.post('/upload', (req, res) => {
 
 app.use('/Images', express.static(path.join(__dirname, 'Images')));
 
+
 // fetch posts
 app.get('/posts/:userid', (req, res) => {
     const { userid } = req.params;
@@ -328,6 +342,19 @@ app.get('/posts/:userid', (req, res) => {
     });
 });
 
+
+app.delete('/user/:id/photo/:photoId', (req, res) => {
+    const { id, photoId } = req.params;
+    const sql = 'DELETE FROM post WHERE user_id = ? AND ID = ?';
+
+    db.query(sql, [id, photoId], (err, result) => {
+        if (err) {
+            console.error('Error deleting photo:', err);
+            return res.status(500).json({ success: false, message: 'Error deleting photo' });
+        }
+        res.json({ success: true, message: 'Photo deleted successfully' });
+    });
+});
 
 
 //logic to remove user
