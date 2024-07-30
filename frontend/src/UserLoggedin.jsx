@@ -56,6 +56,20 @@ function UserLoggedin() {
   };
 
 
+  const handleDelete = (photoId) => {
+    console.log(`Deleting post with id: ${photoId}`); // Debugging log
+    axios.delete(`http://localhost:8081/user/${id}/photo/${photoId}`)
+      .then(response => {
+        console.log(response.data);
+        if (response.data.success) {
+          setPosts(posts.filter(post => post.ID !== photoId));
+        } else {
+          console.error(response.data.message);
+        }
+      })
+      .catch(error => console.error('Error deleting photo:', error));
+  };
+
   useEffect(() => {
     axios.get(`http://localhost:8081/user/${id}`)
       .then(res => {
@@ -121,7 +135,7 @@ function UserLoggedin() {
               <div className="mb-2">
                 <strong>Your Feed</strong>
                     {posts.map(post => (
-                        <div key={post.id} className="post">
+                        <div key={post.ID} className="post">
                             <h3>{post.Text}</h3>
                             {JSON.parse(post.Images).map((imageUrl, index) => (
                                 <img
@@ -131,6 +145,7 @@ function UserLoggedin() {
                                     style={{ width: '200px', height: 'auto', margin: '10px' }}
                                 />
                             ))}
+                            <button className="delete-button" onClick={() => handleDelete(post.ID)}>Delete</button>
                         </div>
                     ))}
               </div>
