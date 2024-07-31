@@ -10,11 +10,11 @@
 
 
 
---Frontend created with React.<br/>
---Backend engineered with Express.<br/>
---MySQL database for usercredentials, userprofile, and posts.<br/>
---User Authentication using jsonwebtoken and cookie-parser.<br/>
---Password hashing using bcrypt.<br/>
+<strong>--Frontend created with React.</strong><br/>
+<strong>--Backend engineered with Express.</strong><br/>
+<strong>--MySQL database for usercredentials, userprofile, and posts.</strong><br/>
+<strong>--User Authentication using jsonwebtoken and cookie-parser.</strong><br/>
+<strong>--Password hashing using bcrypt.</strong><br/>
 
 <strong>Functionality:</strong><br/>
 --Creation of token once user is logged in. (Login cannot be bypassed by putting user_id in url. If correct cookies are not present direct to login page.)<br/>
