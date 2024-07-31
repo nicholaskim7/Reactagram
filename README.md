@@ -27,3 +27,4 @@
 <strong>Starting:</strong><br/>
 --In backend npm start server.js<br/>
 --In frontend npm run dev<br/>
+--localhost:5173/ is the react frontend.
