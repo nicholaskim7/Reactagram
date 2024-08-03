@@ -8,7 +8,8 @@
 ![updatecredentials](https://github.com/user-attachments/assets/acd3003a-b95f-4835-a14f-13485beb83df)
 
 <strong>When you try to bypass login through the url:</strong>
-![trytobypasslogin](https://github.com/user-attachments/assets/606c4279-9e0a-46a2-a14c-65b6413962da)
+![trytobypasslogin](https://github.com/user-attachments/assets/a306572b-6c57-4f40-950d-9fbce505b48c)
+
 
 <strong>For you page (fetching all posts to a page showing which user posted, by username):</strong>
 ![fyp](https://github.com/user-attachments/assets/c571f596-8995-44cd-9481-525e9f667003)
