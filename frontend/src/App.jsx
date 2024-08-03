@@ -12,6 +12,7 @@ import Navbar2 from './Navibar2';
 import Profile from './UserProfile';
 import Photos from './photos';
 import Feed from './Feed';
+import PublicFeed from './PublicFeed';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path='/loggedin/updateprofile/:id' element={<Profile />}></Route>
           <Route path='/photos' element={<Photos />}></Route>
           <Route path='/feed' element={<Feed />}></Route>
+          <Route path='/posts' element={<PublicFeed />}></Route>
 
         </Routes>
       </BrowserRouter>
