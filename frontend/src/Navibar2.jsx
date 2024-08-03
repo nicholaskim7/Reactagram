@@ -48,19 +48,25 @@ function Bar2() {
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
-      <Form className="d-flex" onSubmit={handleSearchSubmit}>
-        <InputGroup>
-          <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-          <Form.Control
-            placeholder="Username"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-            value={username}
-            onChange={handleUsernameChange}
-          />
-        </InputGroup>
-        <Button type="submit" className="ms-2">Search</Button>
-      </Form>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="me-auto d-flex align-items-center">
+          <Form className="d-flex me-3" onSubmit={handleSearchSubmit}>
+            <InputGroup>
+              <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+              <Form.Control
+                placeholder="Username"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                value={username}
+                onChange={handleUsernameChange}
+              />
+            </InputGroup>
+            <Button type="submit" className="ms-2">Search</Button>
+          </Form>
+          <Nav.Link as={Link} to="/posts">For You Page</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
       {error && <div className="text-danger ms-3">{error}</div>}
     </Navbar>
   );
