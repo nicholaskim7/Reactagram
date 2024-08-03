@@ -35,3 +35,8 @@
 --In backend npm start server.js<br/>
 --In frontend npm run dev<br/>
 --localhost:5173/ is the react frontend.
+
+<strong>Future Plan:</strong><br/>
+--Follower System.<br/>
+--Commenting on posts etc.<br/>
+
