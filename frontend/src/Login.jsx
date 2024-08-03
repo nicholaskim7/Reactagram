@@ -30,7 +30,7 @@ function Login() {
 
   return (
         <div className="d-flex vh-100 justify-content-center align-items-center bg-primary">
-            <div className="p-3 bg-white w-25">
+            <div className="p-3 bg-white w-25 rounded p-3">
                 <h2>Log in</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
