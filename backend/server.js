@@ -343,6 +343,23 @@ app.get('/posts/:userid', (req, res) => {
 });
 
 
+//get all post for "for you page"
+app.get('/posts', (req, res) => {
+    const sql = `
+        SELECT p.*, u.username 
+        FROM post p
+        JOIN userprofile u ON p.user_id = u.user_id
+    `;
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error('Error fetching posts:', err);
+            return res.status(500).json({ message: 'Error fetching posts' });
+        }
+        res.json(results);
+    });
+});
+
+
 app.delete('/user/:id/photo/:photoId', (req, res) => {
     const { id, photoId } = req.params;
     const sql = 'DELETE FROM post WHERE user_id = ? AND ID = ?';
