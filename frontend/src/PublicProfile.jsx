@@ -3,6 +3,12 @@ import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import react, { useEffect, useState } from 'react'
 import axios from 'axios';
 import './Feed.css';
+import './Login.css';
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString(); // Adjust format if needed
+};
 
 function PublicProfile() {
   const { name } = useParams();
@@ -22,7 +28,7 @@ function PublicProfile() {
   }, [name]);
 
   return (
-    <div className='d-flex flex-column align-items-center'>
+    <div className='d-flex flex-column align-items-center bg-light-blue'>
       <div className='mt-4 w-50 rounded p-3 custom-box'>
         <h2>@{userData.username}</h2>
         {userData.profile_picture && <img src={`http://localhost:8081${userData.profile_picture}`} alt="Profile" width="150" height="140" className='mb-3' style={{ borderRadius: '50%' }} />}
@@ -48,9 +54,10 @@ function PublicProfile() {
                   key={index}
                   src={`http://localhost:8081${imageUrl}`}
                   alt="Post"
-                  style={{ width: '200px', height: 'auto', margin: '10px' }}
+                  style={{ width: '350px', height: 'auto', margin: '10px' }}
                 />
               ))}
+              <h6>{formatDate(post.date)}</h6>
             </div>
           ))}
         </div>
