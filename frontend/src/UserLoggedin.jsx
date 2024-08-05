@@ -1,8 +1,17 @@
 import React from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import react, { useEffect, useState } from 'react'
+import { Dropdown } from 'react-bootstrap';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import axios from 'axios';
 import './Feed.css';
+import './Login.css';
+import './UserLoggedin.css';
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString(); // Adjust format if needed
+};
 
 function UserLoggedin() {
   const [auth, setAuth] = useState(false);
@@ -41,6 +50,9 @@ function UserLoggedin() {
         .then(response => {
             console.log(response.data);
             fetchPosts();
+            // Clear the form fields
+            setImages([]);
+            setText('');
         })
         .catch(error => {
             console.error(error);
@@ -51,7 +63,9 @@ function UserLoggedin() {
   // Function to fetch posts
   const fetchPosts = () => {
     axios.get(`http://localhost:8081/posts/${id}`)
-      .then(response => setPosts(response.data))
+      .then(response => {
+        setPosts(response.data)
+      })
       .catch(error => console.error('Error fetching posts:', error));
   };
 
@@ -99,14 +113,16 @@ function UserLoggedin() {
     <div>
       {
         auth ?
-        <div className='d-flex flex-column align-items-center'>
+        <div className='d-flex flex-column align-items-center bg-light-blue'>
           <h3>You are Authorized --- {id}</h3>
-            <div className='mt-4'>
-              <button onClick={handleLogout} className='btn btn-danger' style={{ position: 'absolute', top: '10px', right: '20px' }}>Logout</button>
-              <Link to={`/loggedin/updatelogin/${id}`} className='btn btn-primary' style={{ position: 'absolute', top: '10px', right: '102px' }}>Update Login</Link>
-              <Link to={`/loggedin/updateprofile/${id}`} className='btn btn-primary' style={{ position: 'absolute', top: '10px', right: '230px' }}>Update Profile</Link>
-            </div>
-            <div className='mt-4 w-50 rounded p-3 custom-box'>
+          <div className='mt-4'>
+            <DropdownButton id="dropdown-basic-button" title="Settings" variant="dark" style={{ position: 'absolute', top: '10px', right: '20px' }}>
+              <Dropdown.Item as={Link} to={`/loggedin/updatelogin/${id}`} className='text-primary'>Update Login</Dropdown.Item>
+              <Dropdown.Item as={Link} to={`/loggedin/updateprofile/${id}`} className='text-primary'>Update Profile</Dropdown.Item>
+              <Dropdown.Item onClick={handleLogout} className='text-danger'>Logout</Dropdown.Item>
+            </DropdownButton>
+          </div>
+          <div className='mt-4 w-50 rounded p-3 custom-box'>
               <h2>@{user.username}</h2>
               {user.profile_picture && <img src={`http://localhost:8081${user.profile_picture}`} alt="Profile" width="150" height="140" className='mb-3' style={{ borderRadius: '50%' }} />}
               <div className='mb-2'>
@@ -118,10 +134,10 @@ function UserLoggedin() {
               <div className='mb-2'>
                 <strong>Relationship Status:</strong> {user.relationship}
               </div>
-            </div>
+          </div>
         
             <div className='mt-4 w-50 rounded p-3 custom-box'>
-              <div className='mb-2'>
+              <div className='mb-2 upload-form'>
                 <form onSubmit={handleSubmit}>
                     <input type="file" multiple onChange={handleImageChange} />
                     <textarea
@@ -142,9 +158,10 @@ function UserLoggedin() {
                                     key={index}
                                     src={`http://localhost:8081${imageUrl}`}
                                     alt="Post"
-                                    style={{ width: '200px', height: 'auto', margin: '10px' }}
+                                    style={{ width: '300px', height: 'auto', margin: '10px' }}
                                 />
                             ))}
+                            <h6>{formatDate(post.date)}</h6>
                             <button className="delete-button" onClick={() => handleDelete(post.ID)}>Delete</button>
                         </div>
                     ))}
