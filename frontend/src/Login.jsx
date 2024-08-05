@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import './Login.css'
 
 function Login() {
     const [email, setEmail] = useState('')
@@ -18,6 +19,7 @@ function Login() {
             setMessage(res.data.message);
             if (res.data.message === 'Login successful...') {
                 const userId = res.data.userId;
+                localStorage.setItem('loggedInUserId', res.data.userId);
                 setTimeout(() => {
                     navigate(`/loggedin/${userId}`);
                 }, 2000);
@@ -29,7 +31,7 @@ function Login() {
     }
 
   return (
-        <div className="d-flex vh-100 justify-content-center align-items-center bg-primary">
+        <div className="d-flex vh-100 justify-content-center align-items-center bg-light-blue">
             <div className="p-3 bg-white w-25 rounded p-3">
                 <h2>Log in</h2>
                 <form onSubmit={handleSubmit}>
