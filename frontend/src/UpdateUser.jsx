@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import './Login.css';
 
 function UpdateUser() {
     const [userData, setUserData] = useState({
@@ -50,7 +51,7 @@ function UpdateUser() {
     };
 
     return (
-        <div className='d-flex vh-100 bg-primary justify-content-center align-items-center'>
+        <div className='d-flex vh-100 bg-light-blue justify-content-center align-items-center'>
             <div className='w-50 bg-white rounded p-3'>
                 <form onSubmit={handleSubmit}>
                     <h2>Update User Login</h2>
