@@ -18,7 +18,7 @@
 ![trytobypasslogin](https://github.com/user-attachments/assets/a306572b-6c57-4f40-950d-9fbce505b48c)
 
 
-<strong>For you page (fetching all posts to a page showing which user posted, by username. Clickable username redirecting to users public profile.):</strong>
+<strong>For you page (fetching all posts to a page showing which user posted, by username. Clickable username redirecting to user's public profile.):</strong>
 ![newforupage](https://github.com/user-attachments/assets/bb4785e2-0f44-4eed-9f6c-6c0fd0b1b929)
 
 
@@ -32,12 +32,13 @@
 <strong>--Password hashing using bcrypt.</strong><br/>
 
 <strong>Functionality:</strong><br/>
---Creation of token once user is logged in. (Login cannot be bypassed by putting user_id in url. If correct cookies are not present direct to login page.)<br/>
+--Creation of token once a user is logged in. (Login cannot be bypassed by putting user_id in the url. If correct cookies are not present direct to the login page.)<br/>
 --Consistent password hashing when registering new users or updating user credentials.<br/>
---Once user is logged in they are directed to their own profile where they can update profile information, update user credentials, or post pictures to their feed.<br/>
---Navbar search feature to search for friend's username. if that user exists in the database redirect to that users public profile.<br/>
---No changes can be made to another users public profile and no access to another users credentials.<br/>
---Logout will clear the cookies.<br/>
+--Once a user is logged in they are directed to their profile where they can update profile information, update user credentials, or post pictures to their feed.<br/>
+--Navbar search feature to search for friend's username. if that user exists in the database redirect to that user's public profile.<br/>
+--No changes can be made to another user's public profile and no access to another user's credentials.<br/>
+--Logout will clear the current logged in users cookies.<br/>
+--FYP that queries all users' posts together for easy viewing. If a user is intrigued by another user's post, the usernames are clickable and direct to that user's public profile.
 
 <strong>Starting:</strong><br/>
 --In backend npm start server.js<br/>
