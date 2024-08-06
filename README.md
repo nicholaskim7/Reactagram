@@ -1,18 +1,26 @@
 <strong>React/Express social-media</strong>
-![reactinsta](https://github.com/user-attachments/assets/c0586e87-f1eb-430d-96d3-3c3178c593eb)
+
+<strong>Login with authentication and password hashing</strong>
+![newlogin](https://github.com/user-attachments/assets/1923780f-56af-4132-98fb-6a0cd202ee3e)
+
+<strong>Users profile</strong>
+![newloggedin](https://github.com/user-attachments/assets/d77b0f7f-b4c5-4c59-9d75-6d44b93908d0)
 
 <strong>Update profile:</strong>
-![updateprofile](https://github.com/user-attachments/assets/ea253faf-bb1f-49eb-8b6e-b0149d7100ad)
+![newupdateprofile](https://github.com/user-attachments/assets/9c5536db-066a-4337-8ba4-18418339c72b)
+
 
 <strong>Update credentials:</strong>
-![updatecredentials](https://github.com/user-attachments/assets/acd3003a-b95f-4835-a14f-13485beb83df)
+![newupdatelogin](https://github.com/user-attachments/assets/6545b445-7f4b-4976-9a62-36433820c21a)
+
 
 <strong>When you try to bypass login through the url:</strong>
 ![trytobypasslogin](https://github.com/user-attachments/assets/a306572b-6c57-4f40-950d-9fbce505b48c)
 
 
-<strong>For you page (fetching all posts to a page showing which user posted, by username):</strong>
-![fyp](https://github.com/user-attachments/assets/c571f596-8995-44cd-9481-525e9f667003)
+<strong>For you page (fetching all posts to a page showing which user posted, by username. Clickable username redirecting to users public profile.):</strong>
+![newforupage](https://github.com/user-attachments/assets/bb4785e2-0f44-4eed-9f6c-6c0fd0b1b929)
+
 
 
 
