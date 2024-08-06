@@ -14,7 +14,7 @@
 ![newupdatelogin](https://github.com/user-attachments/assets/6545b445-7f4b-4976-9a62-36433820c21a)
 
 
-<strong>When you try to bypass login through the url:</strong>
+<strong>When you try to bypass login through the url (Correct cookies are not present):</strong>
 ![trytobypasslogin](https://github.com/user-attachments/assets/a306572b-6c57-4f40-950d-9fbce505b48c)
 
 
