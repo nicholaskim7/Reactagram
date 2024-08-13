@@ -1,5 +1,8 @@
 .bg-light-blue {
     background-color: rgb(93, 167, 216);
+    width: 100%;
+    min-height: 100vh; /* Ensure it covers the full height of the viewport */
+    padding: 20px; /* Optional padding for spacing */
   }
 
   .bg-wh {
