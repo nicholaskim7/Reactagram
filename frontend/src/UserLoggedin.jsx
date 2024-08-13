@@ -3,8 +3,17 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import react, { useEffect, useState } from 'react'
 import { Dropdown } from 'react-bootstrap';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import { Dropdown } from 'react-bootstrap';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import axios from 'axios';
 import './Feed.css';
+import './Login.css';
+import './UserLoggedin.css';
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString(); // Adjust format if needed
+};
 import './Login.css';
 import './UserLoggedin.css';
 
@@ -53,6 +62,9 @@ function UserLoggedin() {
             // Clear the form fields
             setImages([]);
             setText('');
+            // Clear the form fields
+            setImages([]);
+            setText('');
         })
         .catch(error => {
             console.error(error);
@@ -66,9 +78,26 @@ function UserLoggedin() {
       .then(response => {
         setPosts(response.data)
       })
+      .then(response => {
+        setPosts(response.data)
+      })
       .catch(error => console.error('Error fetching posts:', error));
   };
 
+
+  const handleDelete = (photoId) => {
+    console.log(`Deleting post with id: ${photoId}`); // Debugging log
+    axios.delete(`http://localhost:8081/user/${id}/photo/${photoId}`)
+      .then(response => {
+        console.log(response.data);
+        if (response.data.success) {
+          setPosts(posts.filter(post => post.ID !== photoId));
+        } else {
+          console.error(response.data.message);
+        }
+      })
+      .catch(error => console.error('Error deleting photo:', error));
+  };
 
   const handleDelete = (photoId) => {
     console.log(`Deleting post with id: ${photoId}`); // Debugging log
@@ -114,7 +143,16 @@ function UserLoggedin() {
       {
         auth ?
         <div className='d-flex flex-column align-items-center bg-light-blue'>
+        <div className='d-flex flex-column align-items-center bg-light-blue'>
           <h3>You are Authorized --- {id}</h3>
+          <div className='mt-4'>
+            <DropdownButton id="dropdown-basic-button" title="Settings" variant="dark" style={{ position: 'absolute', top: '10px', right: '20px' }}>
+              <Dropdown.Item as={Link} to={`/loggedin/updatelogin/${id}`} className='text-primary'>Update Login</Dropdown.Item>
+              <Dropdown.Item as={Link} to={`/loggedin/updateprofile/${id}`} className='text-primary'>Update Profile</Dropdown.Item>
+              <Dropdown.Item onClick={handleLogout} className='text-danger'>Logout</Dropdown.Item>
+            </DropdownButton>
+          </div>
+          <div className='mt-4 w-50 rounded p-3 custom-box'>
           <div className='mt-4'>
             <DropdownButton id="dropdown-basic-button" title="Settings" variant="dark" style={{ position: 'absolute', top: '10px', right: '20px' }}>
               <Dropdown.Item as={Link} to={`/loggedin/updatelogin/${id}`} className='text-primary'>Update Login</Dropdown.Item>
@@ -171,6 +209,7 @@ function UserLoggedin() {
                 <strong>Your Feed:</strong>
                     {posts.map(post => (
                         <div key={post.ID} className="post">
+                        <div key={post.ID} className="post">
                             <h3>{post.Text}</h3>
                             {JSON.parse(post.Images).map((imageUrl, index) => (
                                 <img
@@ -178,8 +217,11 @@ function UserLoggedin() {
                                     src={`http://localhost:8081${imageUrl}`}
                                     alt="Post"
                                     style={{ width: '300px', height: 'auto', margin: '10px' }}
+                                    style={{ width: '300px', height: 'auto', margin: '10px' }}
                                 />
                             ))}
+                            <h6>{formatDate(post.date)}</h6>
+                            <button className="delete-button" onClick={() => handleDelete(post.ID)}>Delete</button>
                             <h6>{formatDate(post.date)}</h6>
                             <button className="delete-button" onClick={() => handleDelete(post.ID)}>Delete</button>
                         </div>

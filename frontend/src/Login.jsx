@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './Login.css'
+import './Login.css'
 
 function Login() {
     const [email, setEmail] = useState('')
@@ -19,6 +20,7 @@ function Login() {
             setMessage(res.data.message);
             if (res.data.message === 'Login successful...') {
                 const userId = res.data.userId;
+                localStorage.setItem('loggedInUserId', res.data.userId);
                 localStorage.setItem('loggedInUserId', res.data.userId);
                 setTimeout(() => {
                     navigate(`/loggedin/${userId}`);

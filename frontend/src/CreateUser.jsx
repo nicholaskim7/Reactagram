@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import './Login.css';
 
 function CreateUser() {
     const [name, setName] = useState('')

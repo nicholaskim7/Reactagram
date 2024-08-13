@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import axios from 'axios';
+import axios from 'axios';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
@@ -18,6 +19,8 @@ function Bar2() {
   const [username, setUsername] = useState('');
   const [error, setError] = useState('');
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+  const [error, setError] = useState('');
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
 
   const loggedInUserId = localStorage.getItem('loggedInUserId');
 
@@ -28,10 +31,26 @@ function Bar2() {
   };
 
   const handleSearchSubmit = async (e) => {
+  const handleSearchSubmit = async (e) => {
     e.preventDefault();
     if (username.trim() === '') {
       console.log("Username is empty");
       return;
+    }
+
+    try {
+      const response = await axios.get(`http://localhost:8081/check-username/${username}`);
+      if (response.data.userExists) {
+        setError('');
+        navigate(`/publicprofile/${username}`, { state: { loggedInUserId } });
+        setUsername(''); // Clear the input field
+        setIsSearchExpanded(false); // Close the search bar
+      }
+      else{
+        setError('Username does not exist');
+      }
+    } catch (error) {
+      setError('Error checking username');
     }
 
     try {
