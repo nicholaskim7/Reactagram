@@ -19,8 +19,6 @@ function Bar2() {
   const [username, setUsername] = useState('');
   const [error, setError] = useState('');
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
-  const [error, setError] = useState('');
-  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
 
   const loggedInUserId = localStorage.getItem('loggedInUserId');
 
@@ -30,7 +28,6 @@ function Bar2() {
     setUsername(e.target.value);
   };
 
-  const handleSearchSubmit = async (e) => {
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
     if (username.trim() === '') {
