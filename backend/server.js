@@ -55,6 +55,60 @@ app.get("/", (req,res) =>{
     });
 });
 
+// Follow a user
+app.post("/follow", (req, res) => {
+    const { user_id, follower_id } = req.body;
+    const sql = "INSERT INTO followers (user_id, follower_id) VALUES (?, ?)";
+    db.query(sql, [user_id, follower_id], (err, result) => {
+        if (err) {
+            console.error('Follow Error:', err);
+            return res.status(500).json({ error: 'Unable to follow user. Please try again later.' });
+        }
+        return res.json({ success: true, message: "Followed successfully" });
+    });
+});
+
+// Unfollow a user
+app.delete("/unfollow", (req, res) => {
+    const { user_id, follower_id } = req.body;
+    const sql = "DELETE FROM followers WHERE user_id = ? AND follower_id = ?";
+    db.query(sql, [user_id, follower_id], (err, result) => {
+        if (err) {
+            console.error('Unfollow Error:', err);
+            return res.status(500).json({ error: 'Unable to unfollow user. Please try again later.' });
+        }
+        return res.json({ success: true, message: "Unfollowed successfully" });
+    });
+});
+
+// Get followers of a user
+app.get("/followers/:id", (req, res) => {
+    const { id } = req.params;
+    const sql = `SELECT * FROM userprofile WHERE user_id IN 
+                (SELECT follower_id FROM followers WHERE user_id = ?)`;
+    db.query(sql, [id], (err, data) => {
+        if (err) {
+            console.error('Get Followers Error:', err);
+            return res.status(500).json({ error: 'Unable to retrieve followers. Please try again later.' });
+        }
+        res.json(data);
+    });
+});
+
+// Get users that the user is following
+app.get("/following/:id", (req, res) => {
+    const { id } = req.params;
+    const sql = `SELECT * FROM userprofile WHERE user_id IN 
+                (SELECT user_id FROM followers WHERE follower_id = ?)`;
+    db.query(sql, [id], (err, data) => {
+        if (err) {
+            console.error('Get Following Error:', err);
+            return res.status(500).json({ error: 'Unable to retrieve following list. Please try again later.' });
+        }
+        res.json(data);
+    });
+});
+
 //login logic select user whose email and password matches
 app.post('/login', (req,res) => {
     const { email, password } = req.body;
@@ -334,6 +388,23 @@ app.get('/posts/:userid', (req, res) => {
     const { userid } = req.params;
     const sql = 'SELECT * FROM post WHERE user_id = ?';
     db.query(sql, [userid], (err, results) => {
+        if (err) {
+            console.error('Error fetching posts:', err);
+            return res.status(500).json({ message: 'Error fetching posts' });
+        }
+        res.json(results);
+    });
+});
+
+
+//get all post for "for you page"
+app.get('/posts', (req, res) => {
+    const sql = `
+        SELECT p.*, u.username 
+        FROM post p
+        JOIN userprofile u ON p.user_id = u.user_id
+    `;
+    db.query(sql, (err, results) => {
         if (err) {
             console.error('Error fetching posts:', err);
             return res.status(500).json({ message: 'Error fetching posts' });

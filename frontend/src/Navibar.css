@@ -1,0 +1,32 @@
+.search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .search-container.expanded .search-bar {
+    display: flex;
+  }
+  
+  .search-container .search-bar {
+    display: none;
+    transition: all 0.3s ease;
+  }
+  
+  .search-container .search-bar input {
+    transition: width 0.3s ease;
+  }
+  
+  .search-container.expanded .search-bar input {
+    width: 200px; /* Adjust width as needed */
+  }
+  
+  .search-container .search-bar button {
+    margin-left: 8px;
+  }
+
+  .my-custom-button {
+    background-color: #232527; /* Light gray background */
+    border: 2px solid #646a72; /* Primary color border */
+    color: #646a72; /* Primary color text */
+  }

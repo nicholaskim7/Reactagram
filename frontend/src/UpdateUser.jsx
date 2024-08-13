@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import './Login.css';
 
 function UpdateUser() {
     const [userData, setUserData] = useState({
@@ -50,20 +51,20 @@ function UpdateUser() {
     };
 
     return (
-        <div className='d-flex vh-100 bg-primary justify-content-center align-items-center'>
-            <div className='w-50 bg-white rounded p-3'>
+        <div className='d-flex vh-100 bg-light-blue justify-content-center align-items-center'>
+            <div className='w-50 bg-wh rounded p-3'>
                 <form onSubmit={handleSubmit}>
                     <h2>Update User Login</h2>
                     <div className='mb-2'>
                         <label>Email</label>
-                        <input type="email" name="email" className='form-control'
+                        <input type="email" name="email" className='form-control bg-wh'
                             value={userData.email || ''}
                             onChange={handleChange}
                         />
                     </div>
                     <div className='mb-2'>
                         <label>Password</label>
-                        <input type="password" name="password" className='form-control'
+                        <input type="password" name="password" className='form-control bg-wh'
                             value={userData.password}
                             onChange={handleChange}
                             placeholder="Leave blank to keep current password"

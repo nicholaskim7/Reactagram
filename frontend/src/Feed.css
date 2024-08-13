@@ -6,9 +6,9 @@
 
 .post {
     border: 1px solid #ccc;
-    background-color: #dde3eee1;
+    background-color: rgba(255, 255, 255, 0.329);
     padding: 10px;
-    margin: 10px;
+    margin: 15px;
     border-radius: 5px;
     width: 80%;
     max-width: 600px;
@@ -21,9 +21,14 @@
 }
 
 .custom-box {
-    background-color: #e0e5f0e1; /* Light red background */
+    /* background-color: #b9c6e2e1; */
+    background-color: rgba(255, 255, 255, 0.514);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+}
+
+.custom-box:hover {
+    background-color: rgba(221, 218, 218, 0.589); /* Darker red on hover */
+}
 
 .delete-button {
     background-color: #f15f5f; /* Red background color */

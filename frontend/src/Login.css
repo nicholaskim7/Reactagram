@@ -1,0 +1,17 @@
+.bg-light-blue {
+    background-color: rgb(93, 167, 216);
+  }
+
+  .bg-wh {
+    background-color: rgba(255, 255, 255, 0.514);
+  }
+
+  .post-link {
+    color: #1c2327; /* Change to your desired color */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  .post-link:hover {
+    color: #2a85c2; /* Darker shade on hover */
+    
+  }
