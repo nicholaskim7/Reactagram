@@ -3,8 +3,6 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import react, { useEffect, useState } from 'react'
 import { Dropdown } from 'react-bootstrap';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import { Dropdown } from 'react-bootstrap';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import axios from 'axios';
 import './Feed.css';
 import './Login.css';
