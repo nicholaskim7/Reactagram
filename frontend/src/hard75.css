@@ -1,0 +1,65 @@
+.home {
+    background-color: rgb(93, 167, 216);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create_form input{
+    width: 300px;
+    padding: 10px;
+    border-bottom: 2px solid ;
+    outline: none;
+    box-sizing: border-box;
+    background-color: rgba(240, 248, 255, 0.753);
+}
+
+.create_form button {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.63);
+    color: white;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+ul {
+    list-style-type: none; /* Remove default list bullets */
+    padding: 0;
+    margin: 0;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    width: 353px;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.63);
+    color: white;
+    height: 35px;
+    padding: 2px 5px 2px 5px;
+    margin-top: 2px;
+    box-sizing: border-box;
+} 
+
+.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.line_through {
+    text-decoration: line-through;
+}
+
+.checkbox .icons{
+    margin-right: 5px;
+    font-size: 15px;
+}
+
+.task div span {
+    margin: 0px 5px 0px 4px;
+}
+
+.task div .icon {
+    cursor: pointer;
+}

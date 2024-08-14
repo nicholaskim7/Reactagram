@@ -69,9 +69,6 @@ function UserLoggedin() {
       .then(response => {
         setPosts(response.data)
       })
-      .then(response => {
-        setPosts(response.data)
-      })
       .catch(error => console.error('Error fetching posts:', error));
   };
 

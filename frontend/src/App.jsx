@@ -13,6 +13,8 @@ import PublicFeed from './PublicFeed';
 import Draw from './Draw';
 import FollowersList from './Followers';
 import FollowingList from './Following';
+import Hard75 from './hard75';
+import CreateToDo from './CreateToDo';
 
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
           <Route path='/draw' element={<Draw />}></Route>
           <Route path="/followers/:id" element={<FollowersList />} />
           <Route path="/following/:id" element={<FollowingList />} />
+          <Route path="/hard-75/:loggedInUserId" element={<CreateToDo />} />
+          {/* <Route path="/hard-75/:id" element={<Hard75 />} /> */}
 
         </Routes>
       </BrowserRouter>

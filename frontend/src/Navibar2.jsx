@@ -90,7 +90,10 @@ function Bar2() {
               )}
             </div>
           {loggedInUserId ? (
-            <Nav.Link as={Link} to={`/loggedin/${loggedInUserId}`}>Your page</Nav.Link>
+            <div style={{ display: 'flex', gap: '3px' }}>
+              <Nav.Link as={Link} to={`/loggedin/${loggedInUserId}`}>Your page</Nav.Link>
+              <Nav.Link as={Link} to={`/hard-75/${loggedInUserId}`}>Hard75</Nav.Link>
+            </div>
           ) : (
             <Nav.Link disabled>Your page</Nav.Link> // Disabled if ID is not available
           )}

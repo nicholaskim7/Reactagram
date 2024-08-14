@@ -474,6 +474,62 @@ app.delete('/user/:id', (req, res) => {
 });
 
 
+app.post('/hard-75', (req, res) => {
+    const { user_id, task } = req.body;
+    if (user_id && task) {
+        const sql = 'INSERT INTO todos (task, user_id) VALUES (?, ?)';
+        db.query(sql, [task, user_id], (err, result) => {
+            if (err) {
+                console.error('Error inserting task:', err);
+                return res.status(500).json({ message: 'Failed to create task' });
+            }
+            res.status(201).json({ message: 'Task created successfully', task_id: result.insertId });
+        });
+    } else {
+        res.status(400).json({ message: 'Task and user_id are required' });
+    }
+});
+
+// Fetch To-Dos for a user
+app.get('/todos/:userId', (req, res) => {
+    const { userId } = req.params;
+    const sql = 'SELECT * FROM todos WHERE user_id = ?';
+    db.query(sql, [userId], (err, results) => {
+        if (err) {
+            console.error('Error fetching tasks:', err);
+            return res.status(500).json({ message: 'Failed to fetch tasks' });
+        }
+        res.status(200).json(results);
+    });
+});
+
+// Delete a To-Do
+app.delete('/todos/:todoId', (req, res) => {
+    const { todoId } = req.params;
+    const sql = 'DELETE FROM todos WHERE task_id = ?';
+    db.query(sql, [todoId], (err, result) => {
+        if (err) {
+            console.error('Error deleting task:', err);
+            return res.status(500).json({ message: 'Failed to delete task' });
+        }
+        res.status(200).json({ message: 'Task deleted successfully' });
+    });
+});
+
+app.put('/todos/:userId/update/:id', (req, res) => {
+    const { id } = req.params;
+    // Set 'done' to true
+    const sql = 'UPDATE todos SET done = ? WHERE task_id = ?';
+    db.query(sql, [true, id], (err, result) => {
+        if (err) {
+            console.error('Error updating task:', err);
+            return res.status(500).json({ message: 'Failed to update task' });
+        }
+        res.status(200).json({ message: 'Task updated successfully' });
+    });
+});
+
+
 app.listen(8081, () => {
     console.log("listening...");
 });
