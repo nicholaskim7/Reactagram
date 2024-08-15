@@ -57,4 +57,5 @@ System to allow following users and being followed by users. Changes Reflect on 
 3. **Access**: Go to `localhost:5173/` to view the React frontend.
 
 ## Future Plans
+- Follower System (already working)
 - Commenting on posts
