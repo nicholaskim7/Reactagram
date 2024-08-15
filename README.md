@@ -5,7 +5,7 @@
 ### Login with Authentication and Password Hashing
 ![newlogin](https://github.com/user-attachments/assets/1923780f-56af-4132-98fb-6a0cd202ee3e)
 
-### User's Profile
+### Logged in User's Profile
 ![newloggedin](https://github.com/user-attachments/assets/d77b0f7f-b4c5-4c59-9d75-6d44b93908d0)
 
 ### Update Profile
@@ -18,9 +18,22 @@
 When you try to bypass login through the URL (Correct cookies are not present):
 ![trytobypasslogin](https://github.com/user-attachments/assets/a306572b-6c57-4f40-950d-9fbce505b48c)
 
+### Public Profile
+Public profile of users when searched by friends via the nav bar search bar using username.
+![newpublicprofile](https://github.com/user-attachments/assets/4abdec00-090c-4e93-8677-79f6f4ab83f9)
+
+
 ### For You Page
 Fetching all posts to a page showing which user posted by username. Clickable username redirecting to user's public profile:
 ![newforupage](https://github.com/user-attachments/assets/bb4785e2-0f44-4eed-9f6c-6c0fd0b1b929)
+
+### 75 hard
+Allow users to participate in the popular 75 hard challenge. Display user's task completion on their public profile, for all to see, to motivate them to finish their daily tasks.
+![75hard](https://github.com/user-attachments/assets/790aff89-9ae5-4081-8fb1-44b77e140703)
+
+### Follower and Following query
+System to allow following users and being followed by users. Changes Reflect on the users public profile showing unfollow if that user is already followed and vise versa.
+
 
 ## Technology Stack
 - **Frontend**: React
@@ -44,5 +57,4 @@ Fetching all posts to a page showing which user posted by username. Clickable us
 3. **Access**: Go to `localhost:5173/` to view the React frontend.
 
 ## Future Plans
-- Follower system
 - Commenting on posts
