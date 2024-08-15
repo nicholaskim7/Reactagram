@@ -258,16 +258,29 @@ app.get('/public/:username', (req, res) => {
         WHERE u.username = ?
     `;
 
+    const taskSql = `
+        SELECT t.* 
+        FROM todos t 
+        JOIN userprofile u ON t.user_id = u.user_id 
+        WHERE u.username = ?
+    `;
+
     db.query(sqlProfile, [username], (err, userData) => {
         if (err) return res.status(500).json({ message: "Error" });
         if (userData.length === 0) {
             return res.status(404).json({ message: "User not found" });
         }
         const user = userData[0];
+
+        // Fetch posts and tasks in parallel
         db.query(postsSql, [username], (err, postResults) => {
             if (err) return res.status(500).json({ message: "Error fetching posts" });
 
-            res.json({ user, posts: postResults });
+            db.query(taskSql, [username], (err, taskResults) => {
+                if (err) return res.status(500).json({ message: "Error fetching tasks" });
+
+                res.json({ user, posts: postResults, tasks: taskResults });
+            });
         });
     });
 });

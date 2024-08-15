@@ -4,6 +4,7 @@ import react, { useEffect, useState } from 'react'
 import axios from 'axios';
 import './Feed.css';
 import './Login.css';
+import { BsCircleFill, BsFillTrashFill, BsFillCheckCircleFill } from 'react-icons/bs';
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -15,6 +16,7 @@ function PublicProfile() {
   const { state } = useLocation();
   const [userData, setUserData] = useState({});
   const [posts, setPosts] = useState([]);
+  const [tasks, setTasks] = useState([]);
   const [isFollowing, setIsFollowing] = useState(state?.isFollowing || false);
   const navigate = useNavigate();
   const loggedInUserId = state?.loggedInUserId;
@@ -25,6 +27,7 @@ function PublicProfile() {
         const userRes = await axios.get(`http://localhost:8081/public/${name}`);
         setUserData(userRes.data.user);
         setPosts(userRes.data.posts);
+        setTasks(userRes.data.tasks);
         
         if (loggedInUserId) {
           const followingRes = await axios.get(`http://localhost:8081/following/${loggedInUserId}`);
@@ -65,6 +68,7 @@ fetchUserData();
 
   return (
     <div className='d-flex flex-column align-items-center bg-light-blue'>
+      {/* user info */}
       <div className='mt-4 w-50 rounded p-3 custom-box'>
         <h2>@{userData.username}</h2>
         {userData.profile_picture && <img src={`http://localhost:8081${userData.profile_picture}`} alt="Profile" width="150" height="140" className='mb-3' style={{ borderRadius: '50%' }} />}
@@ -84,6 +88,27 @@ fetchUserData();
         }
       </div>
 
+      {/* 75 hard */}
+      <div className='mt-4 w-50 rounded p-3 custom-box'>
+        <div className="mb-2">
+          <strong>{userData.full_name}'s 75 Hard:</strong>
+          <ul>
+            {tasks.map(task => (  
+              <li className='task' key={task.task_id}>
+                <div className='checkbox'>
+                  {task.done ?
+                    <BsFillCheckCircleFill className='icon' />
+                    : <BsCircleFill className='icon' />
+                  }
+                  <p className={task.done ? "line_through" : ""}>{task.task}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* posts */}
       <div className='mt-4 w-50 rounded p-3 custom-box'>
         <div className="mb-2">
           <strong>{userData.full_name}'s Feed:</strong>
@@ -103,7 +128,6 @@ fetchUserData();
           ))}
         </div>
       </div>
-
     </div>
   );
 }
