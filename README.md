@@ -2,17 +2,25 @@
 
 ## Features
 
-### Login with Authentication and Password Hashing
-![newlogin](https://github.com/user-attachments/assets/1923780f-56af-4132-98fb-6a0cd202ee3e)
+### Register new users with password hashing using bcrypt
+![createUserView](https://github.com/user-attachments/assets/d3dc8fb2-4749-4b60-975e-fa5f1aa46682)
+
+
+### Login with user Authentication using jsonwebtoken
+![loginView](https://github.com/user-attachments/assets/3ce801a9-506f-4d9e-8380-709121239db5)
+
 
 ### Logged in User's Profile
-![newloggedin](https://github.com/user-attachments/assets/d77b0f7f-b4c5-4c59-9d75-6d44b93908d0)
+![userloggedinView](https://github.com/user-attachments/assets/f2150675-ff4d-4257-8537-91da0405fd01)
+
 
 ### Update Profile
-![newupdateprofile](https://github.com/user-attachments/assets/9c5536db-066a-4337-8ba4-18418339c72b)
+![updateProfileView](https://github.com/user-attachments/assets/c6619be7-5c42-4fcf-9dfa-013b60142def)
+
 
 ### Update Credentials
-![newupdatelogin](https://github.com/user-attachments/assets/6545b445-7f4b-4976-9a62-36433820c21a)
+![updatecredentialsView](https://github.com/user-attachments/assets/1c5a92d3-5ee7-4711-b51e-329221aa9753)
+
 
 ### Unauthorized Access Attempt
 When you try to bypass login through the URL (Correct cookies are not present):
@@ -20,19 +28,22 @@ When you try to bypass login through the URL (Correct cookies are not present):
 
 ### Public Profile
 Public profile of users when searched by friends via the nav bar search bar using username.
-![newpublicprofile](https://github.com/user-attachments/assets/4abdec00-090c-4e93-8677-79f6f4ab83f9)
+![friendsPublicProfileView](https://github.com/user-attachments/assets/a4f223ff-39c8-4031-8d8e-1ea7e30e81e5)
+
 
 
 ### For You Page
 Fetching all posts to a page showing which user posted by username. Clickable username redirecting to user's public profile:
-![newforupage](https://github.com/user-attachments/assets/bb4785e2-0f44-4eed-9f6c-6c0fd0b1b929)
+![forYouPageView](https://github.com/user-attachments/assets/02e96444-a139-4348-9d86-e793f765920b)
+
 
 ### 75 hard
 Allow users to participate in the popular 75 hard challenge. Display user's task completion on their public profile, for all to see, to motivate them to finish their daily tasks.
-![75hard](https://github.com/user-attachments/assets/790aff89-9ae5-4081-8fb1-44b77e140703)
+![fixedmargins](https://github.com/user-attachments/assets/bb4663d4-8d39-4db3-b2a6-0745cfc42a2d)
+
 
 ### Follower and Following query
-System to allow following users and being followed by users. Changes Reflect on the users public profile showing unfollow if that user is already followed and vise versa.
+System to allow following users and being followed by users. State Changes Reflect on the users public profile showing unfollow option if that user is already followed and vise versa.
 
 
 ## Technology Stack
@@ -57,5 +68,4 @@ System to allow following users and being followed by users. Changes Reflect on 
 3. **Access**: Go to `localhost:5173/` to view the React frontend.
 
 ## Future Plans
-- Follower System (already working)
 - Commenting on posts
