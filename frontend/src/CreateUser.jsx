@@ -13,7 +13,7 @@ function CreateUser() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        axios.post('http://localhost:8081/create', {name, email, password})
+        axios.post('http://localhost:8012/create', {name, email, password})
         .then(res => {
             setMessage(res.data.message);
             if (res.data.message === "User created successfully...") {
@@ -29,29 +29,32 @@ function CreateUser() {
     }
 
   return (
-    <div className='d-flex vh-100 bg-light-blue justify-content-center align-items-center'>
-        <div className='w-50 bg-wh rounded p-3'>
+    <div className='welcome-container d-flex flex-column justify-content-center align-items-center text-center'>
+        <div className='login-card p-4 shadow-lg'>
             <form onSubmit={handleSubmit}>
-                <h2>Add User</h2>
-                <div className='mb-2'>
-                    <label htmlFor="">Name</label>
-                    <input type="text" placeholder='Enter Name' className='form-control bg-wh'
-                    onChange={e => setName(e.target.value)}
+                <h2 className="mb-3">Sign Up</h2>
+                <div className='mb-3 text-start'>
+                    <label htmlFor="" className="form-label">Name</label>
+                    <input type="text" placeholder='Enter Name' className="form-control"
+                    onChange={e => setName(e.target.value)} required
                     />
                 </div>
-                <div className='mb-2'>
-                    <label htmlFor="">Email</label>
-                    <input type="email" placeholder='Enter Email' className='form-control bg-wh'
-                    onChange={e => setEmail(e.target.value)}
+                <div className='mb-3 text-start'>
+                    <label htmlFor="" className="form-label">Email</label>
+                    <input type="email" placeholder='Enter Email' className="form-control"
+                    onChange={e => setEmail(e.target.value)} required
                     />
                 </div>
-                <div className='mb-2'>
-                    <label htmlFor="">Password</label>
-                    <input type="text" placeholder='Enter Password' className='form-control bg-wh'
-                    onChange={e => setPassword(e.target.value)}
+                <div className='mb-3 text-start'>
+                    <label htmlFor="" className="form-label">Password</label>
+                    <input type="text" placeholder='Enter Password' className="form-control"
+                    onChange={e => setPassword(e.target.value)} required
                     />
                 </div>
-                <button className='btn btn-success'>Submit</button>
+                <div className="d-grid gap-2">
+                    <button className="btn welcome-btn">Submit</button>
+                </div>
+                
             </form>
             {message && <div className="mt-3 alert alert-info">{message}</div>}
         </div>
