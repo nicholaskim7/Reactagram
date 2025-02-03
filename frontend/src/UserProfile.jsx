@@ -13,7 +13,7 @@ function Profile() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:8081/user/${id}`)
+        axios.get(`http://localhost:8012/user/${id}`)
         .then(res => {
             setUser(res.data.user || {});
             setBio(res.data.user.bio || '');
@@ -34,7 +34,7 @@ function Profile() {
             formData.append('profile_picture', profilePic);
         }
 
-        axios.put(`http://localhost:8081/user/${id}/update`, formData)
+        axios.put(`http://localhost:8012/user/${id}/update`, formData)
         .then(res => {
             console.log(res);
             navigate(`/loggedin/${id}`);
@@ -83,7 +83,7 @@ function Profile() {
                 <div className='mb-2'>
                     <label>Update Profile Picture</label>
                     <input type='file' className='form-control bg-wh' onChange={handleFileChange} />
-                    {user.profile_picture && <img src={`http://localhost:8081${user.profile_picture}`} alt="Profile" width="100" />}
+                    {user.profile_picture && <img src={`http://localhost:8012${user.profile_picture}`} alt="Profile" width="100" />}
                 </div>
                 <div className='mb-2'>
                     <label>Update Relationship Status:</label>
