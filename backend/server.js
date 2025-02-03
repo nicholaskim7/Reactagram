@@ -256,6 +256,7 @@ app.get('/public/:username', (req, res) => {
         FROM post p 
         JOIN userprofile u ON p.user_id = u.user_id 
         WHERE u.username = ?
+        ORDER BY p.date DESC
     `;
 
     const taskSql = `
@@ -399,7 +400,7 @@ app.use('/Images', express.static(path.join(__dirname, 'Images')));
 // fetch posts
 app.get('/posts/:userid', (req, res) => {
     const { userid } = req.params;
-    const sql = 'SELECT * FROM post WHERE user_id = ?';
+    const sql = 'SELECT * FROM post WHERE user_id = ? ORDER BY date DESC';
     db.query(sql, [userid], (err, results) => {
         if (err) {
             console.error('Error fetching posts:', err);
@@ -416,6 +417,7 @@ app.get('/posts', (req, res) => {
         SELECT p.*, u.username 
         FROM post p
         JOIN userprofile u ON p.user_id = u.user_id
+        ORDER BY p.date DESC
     `;
     db.query(sql, (err, results) => {
         if (err) {
@@ -543,6 +545,6 @@ app.put('/todos/:userId/update/:id', (req, res) => {
 });
 
 
-app.listen(8081, () => {
+app.listen(8012, () => {
     console.log("listening...");
 });
