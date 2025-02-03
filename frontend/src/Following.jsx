@@ -11,7 +11,7 @@ function FollowingList() {
 
   useEffect(() => {
     // Fetch the list of users the current user is following
-    axios.get(`http://localhost:8081/following/${id}`)
+    axios.get(`http://localhost:8012/following/${id}`)
       .then(res => {
         if (Array.isArray(res.data)) {
           setFollowing(res.data);
@@ -27,7 +27,7 @@ function FollowingList() {
 
     // Fetch the list of users that the logged-in user is following
     if (loggedInUserId) {
-      axios.get(`http://localhost:8081/following/${loggedInUserId}`)
+      axios.get(`http://localhost:8012/following/${loggedInUserId}`)
         .then(res => {
           if (Array.isArray(res.data)) {
             setUserFollowing(res.data);
@@ -59,11 +59,11 @@ function FollowingList() {
                 <Link to={`/publicprofile/${follow.username}`} className="post-link" state={{ loggedInUserId }}>
                   {follow.full_name} (@{follow.username})
                 </Link>
-                {loggedInUserId && (
+                {/* {loggedInUserId && (
                   <span>
                     {isFollowing(follow.user_id) ? ' (Following)' : ' (Not Following)'}
                   </span>
-                )}
+                )} */}
               </li>
             ))
           ) : (
