@@ -1,32 +1,57 @@
-.search-container {
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-  
-  .search-container.expanded .search-bar {
-    display: flex;
-  }
-  
-  .search-container .search-bar {
-    display: none;
-    transition: all 0.3s ease;
-  }
-  
-  .search-container .search-bar input {
-    transition: width 0.3s ease;
-  }
-  
-  .search-container.expanded .search-bar input {
-    width: 200px; /* Adjust width as needed */
-  }
-  
-  .search-container .search-bar button {
-    margin-left: 8px;
-  }
+.navbar {
+  background-color: #1e1e1e; /* Dark background */
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .my-custom-button {
-    background-color: #232527; /* Light gray background */
-    border: 2px solid #646a72; /* Primary color border */
-    color: #646a72; /* Primary color text */
-  }
+.navbar a, .navbar .nav-link {
+  color: #ffffff !important;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar a:hover, .navbar .nav-link:hover {
+  color: #0d6efd !important; /* Bootstrap primary blue */
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-container.expanded {
+  display: flex;
+}
+
+.search-container .form-control {
+  border-radius: 20px;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.my-custom-button {
+  background-color: #0d6efd;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  transition: background 0.3s ease-in-out;
+}
+
+.my-custom-button:hover {
+  background-color: #0056b3;
+}
+
+.text-danger {
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.text-primary {
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
+}
