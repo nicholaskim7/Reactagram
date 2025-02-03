@@ -11,7 +11,7 @@ function FollowersList() {
 
   useEffect(() => {
     // Fetch followers
-    axios.get(`http://localhost:8081/followers/${id}`)
+    axios.get(`http://localhost:8012/followers/${id}`)
       .then(res => {
         if (Array.isArray(res.data)) {
           setFollowers(res.data);
@@ -27,7 +27,7 @@ function FollowersList() {
 
     // Fetch following to check the follow status
     if (loggedInUserId) {
-      axios.get(`http://localhost:8081/following/${loggedInUserId}`)
+      axios.get(`http://localhost:8012/following/${loggedInUserId}`)
         .then(res => {
           if (Array.isArray(res.data)) {
             setFollowing(res.data);
@@ -62,11 +62,11 @@ function FollowersList() {
                 >
                   {follower.full_name} (@{follower.username})
                 </Link>
-                {loggedInUserId && (
+                {/* {loggedInUserId && (
                   <span>
                     {isFollowing(follower.user_id) ? ' (Following)' : ' (Not Following)'}
                   </span>
-                )}
+                )} */}
               </li>
             ))
           ) : (
