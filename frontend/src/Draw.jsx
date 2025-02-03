@@ -44,9 +44,9 @@ function Draw() {
   };
 
   return (
-    <div>
-        <h4>click and drag!</h4>
-        <h6>Warning your work will not be saved!</h6>
+    <div className="bg-light-blue">
+        <h4 className="mt-5">click and drag!</h4>
+        <h5 className="mt-2">Warning your work will not be saved!</h5>
         <canvas
           onMouseDown={startDrawing}
           onMouseUp={endDrawing}
