@@ -14,7 +14,7 @@ function CreateToDo() {
 
     // Fetch To-Dos for the user
     useEffect(() => {
-        axios.get(`http://localhost:8081/todos/${loggedInUserId}`)
+        axios.get(`http://localhost:8012/todos/${loggedInUserId}`)
             .then(response => setTodos(response.data))
             .catch(error => console.error('Error fetching todos:', error));
     }, [loggedInUserId]);
@@ -23,7 +23,7 @@ function CreateToDo() {
         console.log('loggedInUserId:', loggedInUserId);
         console.log('task:', task);
         if (loggedInUserId && task) {
-            axios.post('http://localhost:8081/hard-75', { user_id: loggedInUserId, task })
+            axios.post('http://localhost:8012/hard-75', { user_id: loggedInUserId, task })
                 .then(result => {
                     console.log(result);
                     setTodos([...todos, { task, task_id: result.data.task_id }]);
@@ -36,7 +36,7 @@ function CreateToDo() {
     };
 
     const handleDelete = (todoId) => {
-        axios.delete(`http://localhost:8081/todos/${todoId}`)
+        axios.delete(`http://localhost:8012/todos/${todoId}`)
             .then(response => {
                 setTodos(todos.filter(todo => todo.task_id !== todoId));
             })
@@ -44,7 +44,7 @@ function CreateToDo() {
     };
 
     const handleEdit = (id) => {
-        axios.put(`http://localhost:8081/todos/${loggedInUserId}/update/${id}`)
+        axios.put(`http://localhost:8012/todos/${loggedInUserId}/update/${id}`)
         .then(result => {
             // Update the UI to reflect the change
             setTodos(todos.map(todo =>
@@ -64,10 +64,9 @@ function CreateToDo() {
 
 
 return (
-        <div className='home'>
-            <h2>75-Hard ToDo List:</h2>
-            <Button onClick={handleInfo}>more info</Button>
-            <h6>Your task completion will be displayed on your public profile. Don't fall behind your friends.</h6>
+        <div className='home mt-5 '>
+            <Button className="btn btn-primary welcome-btn mt-4" onClick={handleInfo}>more info</Button>
+            <h6 className="mt-2">Your task completion will be displayed on your public profile. Don't fall behind your friends.</h6>
 
             <Modal show={showInfo} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -96,7 +95,7 @@ return (
             </div>
                 <ul>
                     {todos.map(todo => (
-                        <li className='task' key={todo.task_id}>
+                        <li className='task rounded p-3' key={todo.task_id}>
                             <div className='checkbox' onClick={() => handleEdit(todo.task_id)}>
                                 {todo.done ?
                                     <BsFillCheckCircleFill className='icon' />
