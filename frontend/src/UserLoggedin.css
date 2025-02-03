@@ -6,7 +6,7 @@
   margin: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  background-color: #c1cde2e1;
+  background-color: #ffffff;
   width: 80%;
   max-width: 600px;
   position: relative;
@@ -16,7 +16,7 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 0.5rem;
-    background-color: rgba(124, 181, 219, 0.37);
+    background-color: #fdfdfd;
   }
   
   .upload-form textarea {
@@ -26,27 +26,65 @@
     resize: vertical;
     width: 312px;
     min-height: 50px;
-    background-color: rgba(182, 196, 206, 0.856);
+    background-color: #fcfeff;
   }
   
   .upload-form button {
-    background-color: #007bff;
-    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border-radius: 25px;
+    background-color: #4fa3e3;
     border: none;
-    border-radius: 4px;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    position: absolute; /* Absolute positioning */
-    bottom: 10px; /* Distance from the bottom */
-    right: 10px; /* Distance from the right */
+    transition: all 0.3s ease-in-out;
+    position: absolute; 
+    bottom: 10px; 
+    right: 10px; 
   }
   
   .upload-form button:hover {
-    background-color: #0056b3;
+    background-color: #76c4ff;
+    transform: scale(1.05);
   }
   
   .upload-form button:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.5);
   }
+
+  .button {
+    background-color: #58a1bd;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+  }
+
+  .button:hover{
+    background-color: #0083b3;
+  }
+
+
+  .custom-dropdown-button {
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border-radius: 25px;
+    background-color: #4fa3e3;
+    border: none;
+    transition: all 0.3s ease-in-out;
+  }
+
+.custom-dropdown-button:hover {
+  background-color: #76c4ff;
+  transform: scale(1.05);
+}
+
+
+.custom-dropdown-button .dropdown-toggle {
+  background-color: transparent !important;  /* Override inner background */
+  color: inherit !important;                  /* Inherit text color */
+  border: none !important;                    /* Remove inner border */
+}
