@@ -18,7 +18,7 @@ function PublicFeed() {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const res = await axios.get('http://localhost:8081/posts');
+                const res = await axios.get('http://localhost:8012/posts');
                 if (res.data && Array.isArray(res.data)) {
                     setPosts(res.data);
                 } else {
@@ -33,7 +33,7 @@ function PublicFeed() {
         const fetchFollowing = async () => {
             if (loggedInUserId) {
                 try {
-                    const res = await axios.get(`http://localhost:8081/following/${loggedInUserId}`);
+                    const res = await axios.get(`http://localhost:8012/following/${loggedInUserId}`);
                     if (Array.isArray(res.data)) {
                         setFollowing(res.data);
                     } else {
@@ -58,7 +58,7 @@ function PublicFeed() {
     return (
         <div>
             <div className='d-flex flex-column align-items-center bg-light-blue'>
-                <div className='mt-4 w-50 rounded p-3 custom-box'>
+                <div className='mt-5 w-50 rounded p-3 custom-box'>
                     <div className="mb-2">
                         {posts.map(post => (
                             <div key={post.ID} className="post">
@@ -78,7 +78,7 @@ function PublicFeed() {
                                 {JSON.parse(post.Images).map((imageUrl, index) => (
                                     <img
                                         key={index}
-                                        src={`http://localhost:8081${imageUrl}`}
+                                        src={`http://localhost:8012${imageUrl}`}
                                         alt="Post"
                                         style={{ width: '350px', height: 'auto', margin: '10px' }}
                                     />
