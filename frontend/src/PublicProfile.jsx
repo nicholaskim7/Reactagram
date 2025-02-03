@@ -1,135 +1,82 @@
-import React from 'react'
-import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
-import react, { useEffect, useState } from 'react'
 import axios from 'axios';
-import './Feed.css';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import './Login.css';
-import { BsCircleFill, BsFillTrashFill, BsFillCheckCircleFill } from 'react-icons/bs';
+import './Login.css';
 
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString(); // Adjust format if needed
-};
+function UpdateUser() {
+    const [userData, setUserData] = useState({
+        email: '',
+        password: ''
+    });
+    const [message, setMessage] = useState('');
+    const { id } = useParams();
+    const navigate = useNavigate();
 
-function PublicProfile() {
-  const { name } = useParams();
-  const { state } = useLocation();
-  const [userData, setUserData] = useState({});
-  const [posts, setPosts] = useState([]);
-  const [tasks, setTasks] = useState([]);
-  const [isFollowing, setIsFollowing] = useState(state?.isFollowing || false);
-  const navigate = useNavigate();
-  const loggedInUserId = state?.loggedInUserId;
+    useEffect(() => {
+        axios.get(`http://localhost:8012/user/${id}`)
+            .then(res => {
+                if (res.data.Status === "Success") {
+                    setUserData({
+                        email: res.data.user.email || '',
+                        password: ''
+                    });
+                } else {
+                    setMessage(res.data.message || 'Error fetching user data');
+                }
+            })
+            .catch(err => {
+                setMessage('Error fetching user data');
+            });
+    }, [id]);
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const userRes = await axios.get(`http://localhost:8012/public/${name}`);
-        setUserData(userRes.data.user);
-        setPosts(userRes.data.posts);
-        setTasks(userRes.data.tasks);
-        
-        if (loggedInUserId) {
-          const followingRes = await axios.get(`http://localhost:8012/following/${loggedInUserId}`);
-          const isFollowingUser = followingRes.data.some(following => following.user_id === userRes.data.user.user_id);
-          setIsFollowing(isFollowingUser);
-      }
-  } catch (err) {
-      console.error('Error fetching user data:', err);
-  }
-};
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUserData({ ...userData, [name]: value });
+    };
 
-fetchUserData();
-}, [name, loggedInUserId]);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.put(`http://localhost:8012/update/${id}`, userData)
+            .then(res => {
+                setMessage(res.data.message);
+                if (res.data.message === 'User credentials updated successfully'){
+                    setTimeout(() => {
+                        navigate(`/loggedin/${id}`);
+                    }, 2000);
+                }
+            })
+            .catch(err => {
+                setMessage(err.response?.data?.message || 'An error occurred');
+            });
+    };
 
-
-  const handleUnfollow = async () => {
-    try {
-      await axios.delete('http://localhost:8012/unfollow', {
-        data: { user_id: userData.user_id, follower_id: loggedInUserId }
-      });
-      setIsFollowing(false);
-    } catch (err) {
-      console.error('Error unfollowing user:', err);
-    }
-  };
-
-  const handleFollow = async () => {
-    try {
-      await axios.post('http://localhost:8012/follow', {
-        user_id: userData.user_id,
-        follower_id: loggedInUserId
-      });
-      setIsFollowing(true);
-    } catch (err) {
-      console.error('Error following user:', err);
-    }
-  };
-
-  return (
-    <div className='d-flex flex-column align-items-center bg-light-blue'>
-      {/* user info */}
-      <div className=' w-50 rounded p-3 custom-box' style={{ marginTop: '90px' }}>
-        <h2>@{userData.username}</h2>
-        {userData.profile_picture && <img src={`http://localhost:8012${userData.profile_picture}`} alt="Profile" width="150" height="140" className='mb-3' style={{ borderRadius: '50%' }} />}
-        <div className='mb-2'>
-          <strong>Name:</strong> {userData.full_name}
-        </div>
-        <div className='mb-2'>
-          <strong>Bio:</strong> {userData.bio}
-        </div>
-        <div className='mb-2'>
-          <strong>Relationship Status:</strong> {userData.relationship}
-        </div>
-        {
-          isFollowing ? 
-          <button onClick={handleUnfollow} className='btn btn-danger'>Unfollow</button> :
-          <button onClick={handleFollow} className='btn btn-primary'>Follow</button>
-        }
-      </div>
-
-      {/* 75 hard */}
-      <div className='mt-4 w-50 rounded p-3 custom-box'>
-        <div className="mb-2">
-          <strong>{userData.full_name}'s 75 Hard:</strong>
-          <ul className="mt-2">
-            {tasks.map(task => (  
-              <li className='task rounded p-3' key={task.task_id}>
-                <div className='checkbox'>
-                  {task.done ?
-                    <BsFillCheckCircleFill className='icon' />
-                    : <BsCircleFill className='icon' />
-                  }
-                  <p className={task.done ? "line_through" : ""}>{task.task}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      {/* posts */}
-      <div className='mt-4 w-50 rounded p-3 custom-box'>
-        <div className="mb-2">
-          <strong>{userData.full_name}'s Feed:</strong>
-          {posts.map(post => (
-            <div key={post.id} className="post mt-2">
-              <h3>{post.Text}</h3>
-              {JSON.parse(post.Images).map((imageUrl, index) => (
-                <img
-                  key={index}
-                  src={`http://localhost:8012${imageUrl}`}
-                  alt="Post"
-                  style={{ width: '350px', height: 'auto', margin: '10px' }}
-                />
-              ))}
-              <h6>{formatDate(post.date)}</h6>
+    return (
+        <div className='d-flex vh-100 bg-light-blue justify-content-center align-items-center'>
+            <div className='w-50 bg-wh rounded p-3'>
+                <form onSubmit={handleSubmit}>
+                    <h2>Update User Login</h2>
+                    <div className='mb-2'>
+                        <label>Email</label>
+                        <input type="email" name="email" className='form-control bg-wh'
+                            value={userData.email || ''}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className='mb-2'>
+                        <label>Password</label>
+                        <input type="password" name="password" className='form-control bg-wh'
+                            value={userData.password}
+                            onChange={handleChange}
+                            placeholder="Leave blank to keep current password"
+                        />
+                    </div>
+                    <button className='btn btn-success'>Update</button>
+                </form>
+                {message && <div className="mt-3 alert alert-info">{message}</div>}
             </div>
-          ))}
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
-export default PublicProfile
+export default UpdateUser;
