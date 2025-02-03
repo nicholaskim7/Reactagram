@@ -57,7 +57,7 @@ Update passwords and emails. Ensure the same password hashing, that is present i
 - **Password Hashing**: bcrypt
 
 ## Functionality
-- **Token Creation**: Once a user is logged in. Login cannot be bypassed by putting user_id in the URL. If correct cookies are not present, redirect to the login page.
+- **Token Creation**: Login cannot be bypassed by putting user_id in the URL. If correct cookies are not present, redirect to the login page.
 - **Password Hashing**: Consistent password hashing when registering new users or updating user credentials.
 - **User Profile**: Once a user is logged in, they are directed to their profile where they can update profile information, update user credentials, or post pictures to their feed.
 - **Navbar Search**: Search feature to search for a friend's username. If the user exists in the database, redirect to that user's public profile.
@@ -72,3 +72,4 @@ Update passwords and emails. Ensure the same password hashing, that is present i
 
 ## Future Plans
 - Commenting on posts
+- Deploy and hosting to showcase design and production skills
