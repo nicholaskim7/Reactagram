@@ -2,48 +2,51 @@
 
 ## Features
 
+### Landing page
+![landingreact](https://github.com/user-attachments/assets/8535000f-77a9-4530-b448-2c91542b9bbf)
+
+
 ### Register new users with password hashing using bcrypt
-![createUserView](https://github.com/user-attachments/assets/d3dc8fb2-4749-4b60-975e-fa5f1aa46682)
+![signupreact](https://github.com/user-attachments/assets/0f9f4e3d-47de-4fca-9ada-305237b29567)
 
 
 ### Login with user Authentication using jsonwebtoken
-![loginView](https://github.com/user-attachments/assets/3ce801a9-506f-4d9e-8380-709121239db5)
+![Loginreact](https://github.com/user-attachments/assets/4856cfb5-d886-4eab-96fa-1fad0dd4d985)
 
 
 ### Logged in User's Profile
-![userloggedinView](https://github.com/user-attachments/assets/f2150675-ff4d-4257-8537-91da0405fd01)
-
-
-### Update Profile
-![updateProfileView](https://github.com/user-attachments/assets/c6619be7-5c42-4fcf-9dfa-013b60142def)
-
-
-### Update Credentials
-![updatecredentialsView](https://github.com/user-attachments/assets/1c5a92d3-5ee7-4711-b51e-329221aa9753)
+![YourpageReact](https://github.com/user-attachments/assets/cce79bdb-0a79-43bd-928c-7f35f2cc4c43)
 
 
 ### Unauthorized Access Attempt
 When you try to bypass login through the URL (Correct cookies are not present):
-![trytobypasslogin](https://github.com/user-attachments/assets/a306572b-6c57-4f40-950d-9fbce505b48c)
+![notAuthorized](https://github.com/user-attachments/assets/08243b77-4c6d-420f-bb83-0ef860be4c11)
+
 
 ### Public Profile
 Public profile of users when searched by friends via the nav bar search bar using username.
-![friendsPublicProfileView](https://github.com/user-attachments/assets/a4f223ff-39c8-4031-8d8e-1ea7e30e81e5)
-
+![YourPublicPage](https://github.com/user-attachments/assets/4f3da1f9-0899-4c08-952b-26708c6d1183)
 
 
 ### For You Page
 Fetching all posts to a page showing which user posted by username. Clickable username redirecting to user's public profile:
-![forYouPageView](https://github.com/user-attachments/assets/02e96444-a139-4348-9d86-e793f765920b)
+![foryoupageReact](https://github.com/user-attachments/assets/fb5b69c8-11a5-414b-a8da-b63ad32d4a3a)
 
 
 ### 75 hard
 Allow users to participate in the popular 75 hard challenge. Display user's task completion on their public profile, for all to see, to motivate them to finish their daily tasks.
-![fixedmargins](https://github.com/user-attachments/assets/bb4663d4-8d39-4db3-b2a6-0745cfc42a2d)
+![TaskReact](https://github.com/user-attachments/assets/abda702f-e7e8-4266-aeb1-4ef83ae6d0fb)
 
 
 ### Follower and Following query
 System to allow following users and being followed by users. State Changes Reflect on the users public profile showing unfollow option if that user is already followed and vise versa.
+
+### Update Profile
+Allow users to update profile information. Gives the user a decision on what to change and what to keep rather than forceing the user to re-enter all their information.
+
+
+### Update Credentials
+Update passwords and emails. Ensure the same password hashing, that is present in account creation, is applied to new passwords.
 
 
 ## Technology Stack
