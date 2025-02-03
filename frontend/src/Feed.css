@@ -1,10 +1,61 @@
+.bg-blue {
+    background-color: #f0f8ff;
+    min-height: 100vh;
+    padding-top: 20px;
+}
+
+.custom-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+}
+
+.post {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.post:hover {
+    transform: scale(1.02);
+}
+
+.post-link {
+    text-decoration: none;
+    font-weight: bold;
+    color: #0d6efd;
+    transition: color 0.3s ease-in-out;
+}
+
+.post-link:hover {
+    color: #004085;
+    text-decoration: underline;
+}
+
+.post img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+
+
 .feed {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.post {
+/* .post {
     border: 1px solid #ccc;
     background-color: rgba(255, 255, 255, 0.329);
     padding: 10px;
@@ -13,23 +64,37 @@
     border-radius: 5px;
     width: 80%;
     max-width: 600px;
-}
+} */
 
-.post img {
+/* .post img {
     max-width: 100%;
     height: auto;
     display: block;
-}
+} */
 
-.custom-box {
-    /* background-color: #b9c6e2e1; */
+/* .custom-box {
     background-color: rgba(255, 255, 255, 0.514);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} */
+
+/* .custom-box:hover {
+    background-color: rgba(221, 218, 218, 0.589);
+} */
+
+.post h6 {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-top: 10px;
 }
 
-.custom-box:hover {
-    background-color: rgba(221, 218, 218, 0.589); /* Darker red on hover */
+/* Following Tag */
+.post span {
+    font-size: 0.9rem;
+    color: green;
+    font-weight: bold;
+    margin-left: 5px;
 }
+
 
 .delete-button {
     background-color: #f15f5f; /* Red background color */
