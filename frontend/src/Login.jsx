@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './Login.css'
 import './Login.css'
+import './Welcome.css';
 
 function Login() {
     const [email, setEmail] = useState('')
@@ -15,15 +16,15 @@ function Login() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        axios.post('http://localhost:8081/login', { email, password })
+        axios.post('http://localhost:8012/login', { email, password })
         .then(res => {
             setMessage(res.data.message);
             if (res.data.message === 'Login successful...') {
                 const userId = res.data.userId;
                 localStorage.setItem('loggedInUserId', res.data.userId);
-                localStorage.setItem('loggedInUserId', res.data.userId);
                 setTimeout(() => {
-                    navigate(`/loggedin/${userId}`);
+                    //navigate(`/loggedin/${userId}`);
+                    navigate('/posts');
                 }, 2000);
             }
         })
@@ -33,22 +34,24 @@ function Login() {
     }
 
   return (
-        <div className="d-flex vh-100 justify-content-center align-items-center bg-light-blue">
-            <div className="p-3 bg-wh w-25 rounded p-3">
-                <h2>Log in</h2>
+        <div className="welcome-container d-flex flex-column justify-content-center align-items-center text-center">
+            <div className="login-card p-4 shadow-lg">
+                <h2 className="mb-3">Log in</h2>
                 <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label htmlFor="email">Email</label>
-                        <input type="email" placeholder="Enter Email" className="form-control bg-wh"
-                        onChange={e => setEmail(e.target.value)}/>
+                    <div className="mb-3 text-start">
+                        <label htmlFor="email" className="form-label">Email</label>
+                        <input type="email" placeholder="Enter Email" className="form-control"
+                        onChange={e => setEmail(e.target.value)} required />
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" placeholder="Enter Password" className="form-control bg-wh"
-                        onChange={e => setPassword(e.target.value)}/>
+                    <div className="mb-3 text-start">
+                        <label htmlFor="password" className="form-label">Password</label>
+                        <input type="password" placeholder="Enter Password" className="form-control"
+                        onChange={e => setPassword(e.target.value)} required />
                     </div>
-                    <button className="btn btn-success">Login</button>
-                    <Link to="/create" className='btn btn-success ms-2'>Create Account</Link>
+                    <div className="d-grid gap-2">
+                        <button className="btn welcome-btn">Login</button>
+                        <Link to="/create" className="btn btn-outline-primary">Create Account</Link>
+                    </div>
                 </form>
                 {message && <div className="mt-3 alert alert-info">{message}</div>}
             </div>
