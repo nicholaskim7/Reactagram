@@ -1,5 +1,5 @@
 .bg-light-blue {
-    background-color: rgb(93, 167, 216);
+    background: linear-gradient(135deg, #9bd4eb, #d2f3ff);
     width: 100%;
     min-height: 100vh; /* Ensure it covers the full height of the viewport */
     padding: 20px; /* Optional padding for spacing */
@@ -17,4 +17,25 @@
   .post-link:hover {
     color: #2a85c2; /* Darker shade on hover */
     
+  }
+
+  .login-card {
+    background: white;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px; /* Limits size for larger screens */
+    padding: 25px;
+    text-align: center;
+  }
+  
+  .form-control {
+    background-color: #f0f8ff; /* Light blue input field */
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .form-control:focus {
+    border-color: #4fa3e3;
+    box-shadow: 0 0 5px rgba(79, 163, 227, 0.5);
   }
