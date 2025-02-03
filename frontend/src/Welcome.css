@@ -1,0 +1,31 @@
+.welcome-container {
+  height: 100vh;
+  background: linear-gradient(135deg, #9cd6ec, #d2f3ff);
+  color: #04476c;
+  text-align: center;
+}
+
+.welcome-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.welcome-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+.welcome-btn {
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  border-radius: 25px;
+  background-color: #4fa3e3;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.welcome-btn:hover {
+  background-color: #76c4ff;
+  transform: scale(1.05);
+}
