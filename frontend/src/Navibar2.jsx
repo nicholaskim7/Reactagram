@@ -35,7 +35,7 @@ function Bar2() {
     }
 
     try {
-      const response = await axios.get(`http://localhost:8081/check-username/${username}`);
+      const response = await axios.get(`http://localhost:8012/check-username/${username}`);
       if (response.data.userExists) {
         setError('');
         navigate(`/publicprofile/${username}`, { state: { loggedInUserId } });
@@ -50,7 +50,7 @@ function Bar2() {
     }
 
     try {
-      const response = await axios.get(`http://localhost:8081/check-username/${username}`);
+      const response = await axios.get(`http://localhost:8012/check-username/${username}`);
       if (response.data.userExists) {
         setError('');
         navigate(`/publicprofile/${username}`, { state: { loggedInUserId } });
@@ -66,10 +66,21 @@ function Bar2() {
   };
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar variant="dark" expand="lg" className="navbar fixed-top">
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto d-flex align-items-center">
+          
+          {loggedInUserId ? (
+            <div style={{ display: 'flex', gap: '2px' }}>
+              <Nav.Link as={Link} to={`/loggedin/${loggedInUserId}`}>Your page</Nav.Link>
+              <Nav.Link as={Link} to={`/hard-75/${loggedInUserId}`}>75-hard</Nav.Link>
+            </div>
+          ) : (
+            <Nav.Link disabled>Your page</Nav.Link> // Disabled if ID is not available
+          )}
+          <Nav.Link as={Link} to="/posts">For You Page</Nav.Link>
+          <Nav.Link as={Link} to="/draw">doodle</Nav.Link>
           <div className={`search-container ${isSearchExpanded ? 'expanded' : ''}`}>
               <Button className="my-custom-button" onClick={() => setIsSearchExpanded(!isSearchExpanded)}>
                 <FaSearch />
@@ -84,21 +95,11 @@ function Bar2() {
                       value={username}
                       onChange={handleUsernameChange}
                     />
-                    <Button type="submit" className="ms-2">Search</Button>
+                    <Button type="submit" className="ms-2 my-custom-button">Search</Button>
                   </InputGroup>
                 </Form>
               )}
             </div>
-          {loggedInUserId ? (
-            <div style={{ display: 'flex', gap: '2px' }}>
-              <Nav.Link as={Link} to={`/loggedin/${loggedInUserId}`}>Your page</Nav.Link>
-              <Nav.Link as={Link} to={`/hard-75/${loggedInUserId}`}>75-hard</Nav.Link>
-            </div>
-          ) : (
-            <Nav.Link disabled>Your page</Nav.Link> // Disabled if ID is not available
-          )}
-          <Nav.Link as={Link} to="/posts">For You Page</Nav.Link>
-          <Nav.Link as={Link} to="/draw">doodle</Nav.Link>
         </Nav>
       </Navbar.Collapse>
       {error && <div className="text-danger ms-3">{error}</div>}
