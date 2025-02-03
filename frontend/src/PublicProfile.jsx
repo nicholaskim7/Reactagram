@@ -24,13 +24,13 @@ function PublicProfile() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const userRes = await axios.get(`http://localhost:8081/public/${name}`);
+        const userRes = await axios.get(`http://localhost:8012/public/${name}`);
         setUserData(userRes.data.user);
         setPosts(userRes.data.posts);
         setTasks(userRes.data.tasks);
         
         if (loggedInUserId) {
-          const followingRes = await axios.get(`http://localhost:8081/following/${loggedInUserId}`);
+          const followingRes = await axios.get(`http://localhost:8012/following/${loggedInUserId}`);
           const isFollowingUser = followingRes.data.some(following => following.user_id === userRes.data.user.user_id);
           setIsFollowing(isFollowingUser);
       }
@@ -45,7 +45,7 @@ fetchUserData();
 
   const handleUnfollow = async () => {
     try {
-      await axios.delete('http://localhost:8081/unfollow', {
+      await axios.delete('http://localhost:8012/unfollow', {
         data: { user_id: userData.user_id, follower_id: loggedInUserId }
       });
       setIsFollowing(false);
@@ -56,7 +56,7 @@ fetchUserData();
 
   const handleFollow = async () => {
     try {
-      await axios.post('http://localhost:8081/follow', {
+      await axios.post('http://localhost:8012/follow', {
         user_id: userData.user_id,
         follower_id: loggedInUserId
       });
@@ -69,9 +69,9 @@ fetchUserData();
   return (
     <div className='d-flex flex-column align-items-center bg-light-blue'>
       {/* user info */}
-      <div className='mt-4 w-50 rounded p-3 custom-box'>
+      <div className=' w-50 rounded p-3 custom-box' style={{ marginTop: '90px' }}>
         <h2>@{userData.username}</h2>
-        {userData.profile_picture && <img src={`http://localhost:8081${userData.profile_picture}`} alt="Profile" width="150" height="140" className='mb-3' style={{ borderRadius: '50%' }} />}
+        {userData.profile_picture && <img src={`http://localhost:8012${userData.profile_picture}`} alt="Profile" width="150" height="140" className='mb-3' style={{ borderRadius: '50%' }} />}
         <div className='mb-2'>
           <strong>Name:</strong> {userData.full_name}
         </div>
@@ -92,9 +92,9 @@ fetchUserData();
       <div className='mt-4 w-50 rounded p-3 custom-box'>
         <div className="mb-2">
           <strong>{userData.full_name}'s 75 Hard:</strong>
-          <ul>
+          <ul className="mt-2">
             {tasks.map(task => (  
-              <li className='task' key={task.task_id}>
+              <li className='task rounded p-3' key={task.task_id}>
                 <div className='checkbox'>
                   {task.done ?
                     <BsFillCheckCircleFill className='icon' />
@@ -113,12 +113,12 @@ fetchUserData();
         <div className="mb-2">
           <strong>{userData.full_name}'s Feed:</strong>
           {posts.map(post => (
-            <div key={post.id} className="post">
+            <div key={post.id} className="post mt-2">
               <h3>{post.Text}</h3>
               {JSON.parse(post.Images).map((imageUrl, index) => (
                 <img
                   key={index}
-                  src={`http://localhost:8081${imageUrl}`}
+                  src={`http://localhost:8012${imageUrl}`}
                   alt="Post"
                   style={{ width: '350px', height: 'auto', margin: '10px' }}
                 />
