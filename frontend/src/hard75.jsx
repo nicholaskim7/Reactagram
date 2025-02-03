@@ -6,7 +6,6 @@ function hard75() {
     const [todos, setTodos] = useState([])
   return (
     <div className='home'>
-        <h2>Todo List:</h2>
         <CreateToDo/>
         {
             todos.length === 0 
