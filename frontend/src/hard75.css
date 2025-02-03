@@ -1,5 +1,5 @@
 .home {
-    background-color: rgb(93, 167, 216);
+    background: linear-gradient(135deg, #9cd6ec, #d2f3ff);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -17,7 +17,7 @@
 
 .create_form button {
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.63);
+    background-color: #74a5b8;
     color: white;
     cursor: pointer;
     margin-top: 5px;
@@ -34,7 +34,7 @@ ul {
     align-items: center;
     width: 353px;
     justify-content: space-between;
-    background-color: rgba(0, 0, 0, 0.63);
+    background-color: #74a5b8;
     color: white;
     height: 35px;
     padding: 2px 5px 2px 5px;
@@ -62,4 +62,12 @@ ul {
 
 .task div .icon {
     cursor: pointer;
+}
+
+
+.task p {
+    margin-bottom: 3px;
+    margin-left: 5px;
+    line-height: 35px; 
+    font-size: 19px;
 }
